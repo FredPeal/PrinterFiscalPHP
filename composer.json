@@ -1,0 +1,18 @@
+{
+  "license": "MIT",
+  "authors": [
+    {
+      "email": "frederickpeal@gmail.com",
+      "name": "Frederick Peñalo",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "5.2.10"
+  },
+  "autoload": {
+    "psr-4": {
+      "PrinterFiscal\\": "app/"
+    }
+  }
+}
