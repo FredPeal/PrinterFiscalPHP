@@ -22,11 +22,9 @@ class Printer
 
     public static function open($head)
     {
-        // print_r($head); die();
         IF_WRITE('@TicketCancel|');
         $nError = IF_WRITE("@TicketOpen|{$head['type_doc']}|{$head['sucursal']}|{$head['caja']}|{$head['ncf']}|{$head['client_name']}|{$head['client_rnc']}|{$head['ncf_ref']}|P|0|");
         if ($nError != 0) {
-            die('Hola');
             throw new Exception('Error abriendo ticket');
         }
         return $nError;
@@ -40,6 +38,7 @@ class Printer
             throw new Exception('Error con items');
         }
     }
+
     public static function subTotal()
     {
         $nError = IF_WRITE("@TicketSubtotal");
@@ -47,6 +46,7 @@ class Printer
             throw new Exception('Error con items');
         }
     }
+    
     public static function setPayments($payment, $price)
     {
         $nError = IF_WRITE("@TicketPayment|$payment|$price");

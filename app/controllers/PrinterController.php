@@ -22,7 +22,7 @@ class PrinterController
         $error = Printer::open($head);
         foreach ($data['items'] as $item) {
             $item = json_decode($item, true);
-            $printer = Printer::setItem($item['description'], $item['cant'], $item['price']);
+            $printer = Printer::setItem($item['description'], $item['cant'], $item['price'], $item['itbis']);
         }
         Printer::subTotal();
 
