@@ -2,12 +2,15 @@
 namespace PrinterFiscal\Controllers;
 
 use PrinterFiscal\Library\Printer;
+use PrinterFiscal\Library\Database;
 
 class PrinterController
 {
     public function index()
     {
-        $data = $_POST;
+
+        $data = $_POST ? $_POST : json_decode(file_get_contents('php://input'), true);
+
         $error = Printer::connect();
         $head = [
             'type_doc' => key_exists('type_doc', $data) ? $data['type_doc'] : 'A',
@@ -22,7 +25,7 @@ class PrinterController
         $error = Printer::open($head);
         foreach ($data['items'] as $item) {
             $item = json_decode($item, true);
-            $printer = Printer::setItem($item['description'], $item['cant'], $item['price']);
+            $printer = Printer::setItem($item['description'], $item['cant'], $item['price'], $item['itbis'], $item['calificadorOperacion']);
         }
         Printer::subTotal();
 
