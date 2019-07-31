@@ -40,9 +40,9 @@ class Printer
         $db->createNcf($head['ncf']);
     }
 
-    public static function setItem($description, $cant, $price, $itbis = '16.00')
+    public static function setItem($description, $cant, $price, $itbis = '16.00', $calificadorOperacion = 'M')
     {
-        $command = "@TicketItem|$description|$cant|$price|$itbis|M|N";
+        $command = "@TicketItem|$description|$cant|$price|$itbis|$calificadorOperacion|N";
         $nError = IF_WRITE($command);
         if ($nError != 0) {
             throw new Exception('Error con items');
