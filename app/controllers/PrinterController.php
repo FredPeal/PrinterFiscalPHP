@@ -21,7 +21,7 @@ class PrinterController
             'client_rnc' => key_exists('client_rnc', $data) ? $data['client_rnc'] : '',
             'ncf_ref' => key_exists('ncf_ref', $data) ? $data['ncf_ref'] : ''
         ];
-
+        
         $error = Printer::open($head);
         foreach ($data['items'] as $item) {
             $item = json_decode($item, true);

@@ -24,15 +24,14 @@ class Printer
     {
         $db = new Database;
         if ($db->lastZ() >= 24 || (!$db->lastZ() && $db->lastZ() != 'integer')) {
-            throw new Exception('Error , la jornada fiscal excedio las 24 horas, Por favor realize el cierre Z');
+            print_r('Error , la jornada fiscal excedio las 24 horas, Por favor realize el cierre Z' . "\n");
         }
         IF_WRITE('@TicketCancel|');
 
         if ($db->existNcf($head['ncf']) && strlen($head['ncf_ref']) == 0) {
             throw new Exception('Este NCF ya existe');
         }
-
-        $nError = IF_WRITE("@TicketOpen|{$head['type_doc']}|{$head['sucursal']}|{$head['caja']}|{$head['ncf']}|{$head['client_name']}|{$head['client_rnc']}|{$head['ncf_ref']}|P|0|");
+        $nError = IF_WRITE("@TicketOpen|{$head['type_doc']}|{$head['sucursal']}|{$head['caja']}|{$head['ncf']}|{$head['client_rnc']}|40226696199|{$head['ncf_ref']}|P|0|");
         if ($nError != 0) {
             throw new Exception('Error abriendo ticket');
         }
@@ -68,8 +67,6 @@ class Printer
     public static function close()
     {
         $nError = IF_WRITE('@TicketSubtotal');
-        $nError = IF_WRITE('@TicketPayment|1|50000.00');
-
         $nError = IF_WRITE('@TicketClose');
         $nError = IF_WRITE('@PaperCut');
 
