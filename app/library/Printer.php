@@ -24,7 +24,7 @@ class Printer
     {
         $db = new Database;
         if ($db->lastZ() >= 24 || (!$db->lastZ() && $db->lastZ() != 'integer')) {
-            throw new Exception('Error , la jornada fiscal excedio las 24 horas, Por favor realize el cierre Z');
+            print_r('Error , la jornada fiscal excedio las 24 horas, Por favor realize el cierre Z' . "\n");
         }
         IF_WRITE('@TicketCancel|');
 
@@ -68,8 +68,6 @@ class Printer
     public static function close()
     {
         $nError = IF_WRITE('@TicketSubtotal');
-        $nError = IF_WRITE('@TicketPayment|1|50000.00');
-
         $nError = IF_WRITE('@TicketClose');
         $nError = IF_WRITE('@PaperCut');
 
