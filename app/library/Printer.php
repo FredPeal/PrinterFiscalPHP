@@ -31,7 +31,8 @@ class Printer
         if ($db->existNcf($head['ncf']) && strlen($head['ncf_ref']) == 0) {
             throw new Exception('Este NCF ya existe');
         }
-        $nError = IF_WRITE("@TicketOpen|{$head['type_doc']}|{$head['sucursal']}|{$head['caja']}|{$head['ncf']}|{$head['client_rnc']}|40226696199|{$head['ncf_ref']}|P|0|");
+
+        $nError = IF_WRITE("@TicketOpen|{$head['type_doc']}|{$head['sucursal']}|{$head['caja']}|{$head['ncf']}|{$head['client_name']}|{$head['client_rnc']}|{$head['ncf_ref']}|P|0|");
         if ($nError != 0) {
             throw new Exception('Error abriendo ticket');
         }

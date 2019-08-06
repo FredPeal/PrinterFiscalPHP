@@ -51,6 +51,11 @@ axios.post(url, data)
 
 ### Payments Methods 
 
+* 01 Efectivo
+* 02 Cheque
+* 03 Transferencia
+* 04 Tarjeta de crédito
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
