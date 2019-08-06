@@ -2,7 +2,6 @@
 namespace PrinterFiscal\Controllers;
 
 use PrinterFiscal\Library\Printer;
-use PrinterFiscal\Library\Database;
 
 class PrinterController
 {
@@ -13,7 +12,7 @@ class PrinterController
 
         $error = Printer::connect();
         $head = [
-            'type_doc' => key_exists('type_doc', $data) ? $data['type_doc'] : 'A',
+            'type_doc' => key_exists('type_doc', $data) ? $data['type_doc'] : 'a',
             'sucursal' => key_exists('sucursal', $data) ? $data['sucursal'] : '001',
             'caja' => key_exists('caja', $data) ? $data['caja'] : '001',
             'ncf' => $data['ncf'],
