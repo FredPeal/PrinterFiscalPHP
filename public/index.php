@@ -9,5 +9,6 @@ try {
     $data = (new PrinterFiscal\Controllers\PrinterController)->index();
     // echo json_response('Impresion exitossa');
 } catch (Exception $e) {
+    header("HTTP/1.0 404 Not Found");
     echo $e->getMessage();
 }
