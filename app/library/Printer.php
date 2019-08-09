@@ -8,6 +8,11 @@ class Printer
 {
     public static function connect()
     {
+        if(getenv('PRODUCTION'))
+        {
+            IF_SERIAL(getenv('SERIAL'));
+        }
+        
         for ($i = 1;$i < 6;$i++) {
             $nError = IF_OPEN("COM$i", 9600);
             if ($nError == 0) {
