@@ -7,7 +7,9 @@ class PrinterController
 {
     public function index()
     {
-
+        if ($_SERVER["REQUEST_METHOD"] != "POST") {
+            return;
+        }
         $data = $_POST ? $_POST : json_decode(file_get_contents('php://input'), true);
 
         $error = Printer::connect();
@@ -28,7 +30,7 @@ class PrinterController
         }
         Printer::subTotal();
 
-        foreach($data['payments_methods'] as $payment){
+        foreach ($data['payments_methods'] as $payment) {
             $payment = json_decode($payment, true);
             Printer::setPayments($payment['method'], $payment['amount']);
         }
