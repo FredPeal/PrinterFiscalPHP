@@ -10,5 +10,5 @@ try {
     // echo json_response('Impresion exitossa');
 } catch (Exception $e) {
     header("HTTP/1.0 404 Not Found");
-    echo json_response($e->getMessage(), 500);
+    echo $e->getMessage();
 }
